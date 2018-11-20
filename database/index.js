@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+mongoose.connect('mongodb://Issa:isa123@ds111876.mlab.com:11876/fetchers');
 
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
@@ -14,7 +14,7 @@ let Repo = mongoose.model('Repo', repoSchema);
 let save = (data) => {
 	var promise  = new Promise(function(resolve, reject) {
 		for (var i = 0; i < data.length; i++) {
-			var repo = new Repo({name: data[i].name, url: data[i].owner.url, username: data[i].owner.login, stargazers_count: data[i].stargazers_count})
+			var repo = new Repo({name: data[i].name, url: data[i].svn_url, username: data[i].owner.login, stargazers_count: data[i].stargazers_count})
 			repo.save(function (err) {
 	      if (err) reject(err)//return console.log('BAD ERROR',handleError(err));
 	      // saved!
