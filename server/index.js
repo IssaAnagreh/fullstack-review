@@ -15,10 +15,12 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.post('/repos', function (req, res) {
-	db.find('PaulStoffregen', function(results) {
-		if (!results) {
-			helper.getReposByUsername('PaulStoffregen').then(function() {
-				db.find('PaulStoffregen', function(resultsat) {
+	var userName = req.body.username
+	db.find(userName, function(results) {
+		console.log(results)
+		if (results.length === 0) {
+			helper.getReposByUsername(userName).then(function() {
+				db.find(userName, function(resultsat) {
 					res.end(JSON.stringify(resultsat)); 
 				})
 			})

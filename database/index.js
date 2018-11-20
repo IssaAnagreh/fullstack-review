@@ -18,7 +18,6 @@ let save = (data) => {
 			repo.save(function (err) {
 	      if (err) reject(err)//return console.log('BAD ERROR',handleError(err));
 	      // saved!
-	      console.log('saved')
 	      resolve();
 	    })
 		}
